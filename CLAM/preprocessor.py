@@ -193,7 +193,7 @@ def collapse_stack(stack, collapse_dict, max_tags):
 		## if any of the alignment is collapsed before,
 		## we require all of them to be collapsed
 		if any(is_collapsed):
-			assert all(is_collapsed)
+			assert all(is_collapsed), Exception("Reads collapsed previously not matched now: %s"%[x in this_alignment_qname_list if x not in collapse_dict])
 			target_alignment_qname = collapse_dict[this_alignment_qname_list[0]][0:max_tags]
 			assert len(collapse_dict[this_alignment_qname_list[0]]) <= max_tags
 			target_alignment = [new_alignment_dict[seq][this_alignment_qname_list.index(x)] for x in target_alignment_qname]
